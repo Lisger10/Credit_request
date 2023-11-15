@@ -1,0 +1,92 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="menu">
+  <div class="procedure"></div>
+  
+  <p class = 'cred1-p1' >
+    Алгоритм получения кредита
+  </p>
+
+  <img src="{% static "images/Alg_img.png" %}" style="width: 100%;">
+  <hr style="color: black; margin-top: 40px" />
+  <div>
+  <div class="cont">
+  <p class = 'cred1-p2'>Являетесь клиентом банка и пользуетесь картой?</p>
+
+    <div class="btn-group" style="margin-left: 35%; margin-top: 16px">
+      <button type="button" class="btn" data-toggle="popover_left"
+      title="Оформите заявку онлайн, дождитесь решения банка и получите деньги на карту в кратчайшие сроки.">
+          Да
+      </button>
+       
+      <button type="button" class="btn" data-toggle="popover_right"
+        title="Оформите заявку в любом отделении банка. При себе необходимо иметь паспорт." >
+          Нет
+        </button>
+      </div>
+
+    </div>
+    <hr style="color: black; margin-top: 40px" />
+<main>
+ <article>
+   <div>
+    <h1 class = 'cred1-h1'>
+      Заполните заявку на кредит
+    </h1>
+    <p class = 'cred1-p3'>
+      Для оформления заявки на кредит, введите свои данные, как указано в
+      паспорте.<br />
+      Мы должны убедиться, что вы клиент банка.
+      <br />
+      Выплаты по кредиту осуществляются ежемесячно. Ставка
+      рефинансирования - 12%
+    </p>
+    <form method="POST" action="cred_request">
+    {% csrf_token %}
+    <div class="main_cred">
+    <div class="one_part">
+    <p class="cred">Ваше имя:<span class="required"></span></p>
+    <input required type="text" id="name" name="name" placeholder="Введите Имя"  pattern="^[а-яА-Я]+$"required/>
+
+    <p class="cred">Фамилия<span class="required"></span></p>
+    <input required type="text" id="surname" name="surname" placeholder="Введите Фамилию" pattern="^[а-яА-Я]+$" required/>
+
+    <p class="cred">Отчество:<span class="required"></span></p>
+    <input required type="text" id="lastname" name="lastname" placeholder="Введите Отчество" pattern="^[а-яА-Я]+$" required/>
+    <p class="cred">Дата рождения<span class="required"></span></p>
+    <input required type="date" id="date" name="date" placeholder="Введите дату" required/>
+    <p class="cred">
+      Идентификационный <br />номер паспорта:<span class="required"></span>
+    </p>
+    <input required type="text" id="pass" name="pass" placeholder="MP4050800" required/>
+      </div>
+
+    <div class="second_part">
+    <p class="cred">Номер карты:<span class="required"></span></p>
+    <input required type="text" id="card" name="card" maxlength="16" placeholder="1111222233334444" required/>
+    <p class="cred"> Номер телефона:<span class="required"></span></p>
+    <input type="tel" id="phone" name="phone" placeholder="375447001992" required/>
+    <br />
+    <p class="cred">Выберите сумму кредита:</p>
+    <input type="range" step="25" min="300" max="3000" id="r1" name="r1" oninput="fun1()"/>
+    <p class="one" id="one"></p>
+    <p class="one" id="two"></p>
+    <p class="cred">Срок кредита (в месяцах):</p>
+    <input type="range" id="r2" min="1" max="12" name="r2" oninput="fun2()"/>
+    <p id="three"></p>
+    <p id="exp"></p>
+    </div>
+  </div>
+  <br/><br/>
+  <p class = 'cred1-p4'>
+    {{warning}}
+  </p>
+  <input type="submit" style="margin-left: 550px" class="btn1" value="Отправить"/>
+    </form>
+    </div>
+      </article>
+    </main>
+  </div>
+</div>
+
+{% endblock %}

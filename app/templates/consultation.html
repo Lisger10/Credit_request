@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block second_part %}
+{% endblock %}
+    
+{% block content %}
+    
+  <p class = 'consultation-p1'>Контакт-центр</p>
+   
+    <div class="cons">
+     <p class = 'consultation-p2'>Мы уделяем особое внимание качеству работы сотрудников контакт-центра. <br> Будьте уверены в их внимательности, вежливости, компетентности.<br> Экономьте свое время – решайте вопросы дистанционно.</p>
+     <div class="cons">
+      <div class="one_part_c">
+        <img src="{% static "images/cont.jpg" %}" >
+      </div>
+        <div class="second_part_c"> 
+          <div class='phone'>
+            <a href="tel:+375447001992">+375447001992</a>
+          </div>
+        </div>
+  
+  <div class="info_c">
+  <p class = 'consultation-p4'>Звоните по указанному <br>номеру.</p>
+  <h2>Режим работы:</h2>
+  <p class = 'consultation-p3'>пн.-пт.: 8.30 – 21.00* <br>
+    сб.-вс.: 9.00 – 17.00* <br>
+    *кроме праздничных дней</p>
+    <img class = 'cons-img'  src="{% static "images/cons_soc.png" %}" >
+  </div>
+  </div>
+   </div>
+   <hr style="color: black;margin-top:40px">
+   <p class = 'consultation-p5'>Вопрос консультанту</p>
+   
+   <div style="margin-left: 780px; position:absolute; margin-top:-50px" class="spinner-border text-success" role="status">
+    <span class="visually-hidden">Загрузка...</span>
+    </div>
+   <p class = 'consultation-p6'>Если вы хотите задать вопрос консультанту - <br>  воспользуйтесь данной формой.
+   <br> Вы получите ответ на свой вопрос в кратчайшие сроки. </p>
+   
+   <div>
+   <div class="main_cred">
+    <div class="one_part">
+      <form method="POST" action = 'consultation_request' >
+        {% csrf_token %}
+      <p class="cred">Ваше имя:<span class="required"></span></p>
+      <input required type="text" id="name" name="name"  placeholder="Введите имя" pattern="^[а-яА-Я]+$"  required />
+      
+      <p class="cred">Электронная почта:<span class="required"></span></p>
+      <input required type="email" id="email" name="email" placeholder="Germanlis123@gmail.com"  pattern=".+@gmail.com"   required />
+    </div>
+    
+      <div class="second_part"> 
+       <p class = 'consultation-p7' >Ваш вопрос:</p>
+       <p><textarea rows="3" cols="40" name="your_ask" id="your_ask"></textarea></p>
+      </div>      
+  </div>
+  </div>
+
+  <p class = 'consultation-p8'>{{warning}}</p>
+  <input type="submit" style="margin-left: 550px" class="btn1" value="Отправить" >
+  </form>
+      
+{% endblock %}
